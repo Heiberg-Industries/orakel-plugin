@@ -1,0 +1,12 @@
+{
+  "name": "orakel",
+  "version": "1.0.0",
+  "description": "Nordic business data for Claude — search 5M+ companies across Norway, Finland, and Sweden. Look up financials, map ownership networks, find prospects, and push to your CRM. Powered by Brreg, PRH, Bolagsverket, and Orakel's enrichment pipeline.",
+  "author": {
+    "name": "Heiberg Industries",
+    "email": "hello@orakel.cloud",
+    "url": "https://orakel.cloud"
+  },
+  "license": "Proprietary",
+  "homepage": "https://orakel.cloud"
+}

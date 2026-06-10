@@ -1,0 +1,6 @@
+{
+  "orakel": {
+    "type": "http",
+    "url": "https://orakel.cloud/api/mcp"
+  }
+}
