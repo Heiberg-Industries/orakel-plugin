@@ -1,7 +1,7 @@
 ---
 name: ownership-map
 description: >
-  Trace ownership networks and corporate hierarchies for Norwegian and Finnish
+  Trace ownership networks and corporate hierarchies for Norwegian, Finnish, and Danish
   companies. Use for due diligence, competitive intelligence, or compliance
   research. Swedish companies not yet supported (paywalled shareholder data).
 allowed-tools: mcp__orakel__lookup_company, mcp__orakel__get_shareholders, mcp__orakel__get_ownership_network, mcp__orakel__get_corporate_group
@@ -15,13 +15,14 @@ Trace ownership structures, corporate hierarchies, and shareholder networks. Cou
 
 - **Norway (NO):** full parity via Aksjonærregisteret (shareholders) + Brreg (corporate group)
 - **Finland (FI):** best-effort via PRH — shareholder data may be incomplete
+- **Denmark (DK):** roles available via CVR; beneficial ownership skipped (6AMLD legitimate-interest gate)
 - **Sweden (SE):** not supported — Swedish shareholder data sits behind Bolagsverket's paid «Företagsinformation» credential Orakel hasn't applied for. If asked about an SE company, explain the limitation and offer `lookup_company` (basic firmographics) as a fallback.
 
 ## Step 1: Identify the Target Company
 
 The user may provide:
 
-- **Organization number** — 9 digits NO, 7-8 digits FI, 10 digits SE. Use `lookup_company` with the matching `country` parameter.
+- **Organization number** — 9 digits NO, 7-8 digits FI, 8 digits DK, 10 digits SE. Use `lookup_company` with the matching `country` parameter.
 - **Company name**: Use `lookup_company` / `search_companies` to find it. If the country is ambiguous and the name is common, ask.
 
 **If `country=SE`, stop here.** Explain that ownership data isn't available for Swedish companies yet and offer the basic firmographics from `lookup_company` instead.
