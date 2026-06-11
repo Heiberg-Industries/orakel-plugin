@@ -1,7 +1,7 @@
 ---
 name: prospect
 description: >
-  Find and qualify Nordic business prospects (Norway, Finland, Sweden) by industry,
+  Find and qualify Nordic business prospects (Norway, Finland, Sweden, Denmark) by industry,
   location, and size. Use when looking for potential clients, leads, or market opportunities.
 allowed-tools: mcp__orakel__search_companies, mcp__orakel__find_prospects, mcp__orakel__list_municipalities, mcp__orakel__get_financials, mcp__orakel__push_to_destination, mcp__orakel__list_destinations
 ---
@@ -10,21 +10,21 @@ allowed-tools: mcp__orakel__search_companies, mcp__orakel__find_prospects, mcp__
 
 > **Ground rule:** Always retrieve data by calling Orakel tools. Never use training knowledge as a data source — company information changes frequently and your training data may be years out of date. If a tool returns no results, say so explicitly; do not fill gaps from memory.
 
-Find and qualify Nordic business prospects using Orakel's company database. Covers Norway (full data), Finland (firmographics + limited financials), and Sweden (firmographics + iXBRL financials for SMEs).
+Find and qualify Nordic business prospects using Orakel's company database. Covers Norway (full data), Finland (firmographics + limited financials), Sweden (firmographics + iXBRL financials for SMEs), and Denmark (firmographics + roles + XBRL financials via CVR).
 
 ## Step 1: Understand What the User is Looking For
 
 Before searching, clarify these dimensions. If the user is vague, ask structured questions:
 
-- **Country:** Norway, Finland, Sweden, or cross-border? (`country=NO|FI|SE`, defaults to NO)
+- **Country:** Norway, Finland, Sweden, Denmark, or cross-border? (`country=NO|FI|SE|DK`, defaults to NO)
 - **Industry:** What type of business? (restaurants, IT, construction, retail, etc.)
 - **Region:** Where? (specific city, county/län/maakunta, or nationwide)
 - **Size:** How big? (number of employees, revenue range)
 - **Other filters:** Technology stack, ad spend, part of a corporate group?
 
 Example prompt if the user says "find me some prospects":
-> I can search Nordic companies (Norway, Finland, Sweden) by industry, location, and size. Could you tell me:
-> 1. Which country? (or all three)
+> I can search Nordic companies (Norway, Finland, Sweden, Denmark) by industry, location, and size. Could you tell me:
+> 1. Which country? (or all four)
 > 2. What industry are you targeting?
 > 3. Any geographic preference?
 > 4. What company size range? (employees or revenue)
@@ -137,7 +137,7 @@ Use `get_financials` for selected companies. Present year-over-year trends:
 ### Financial Health Quick Guide
 
 | Metric | Healthy | Caution | Warning |
-|--------|---------|---------|--------|
+|--------|---------|---------|---------|
 | Profit margin | > 10% | 3-10% | < 3% or negative |
 | Revenue growth YoY | > 5% | 0-5% | Declining |
 | Equity ratio | > 30% | 20-30% | < 20% |
