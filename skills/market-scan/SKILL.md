@@ -1,7 +1,7 @@
 ---
 name: market-scan
 description: >
-  Analyze a Nordic market segment (Norway, Finland, Sweden) — size, top players,
+  Analyze a Nordic market segment (Norway, Finland, Sweden, Denmark) — size, top players,
   technology landscape, procurement opportunities, regulatory status. Use for
   market research or proposal preparation.
 allowed-tools: mcp__orakel__search_companies, mcp__orakel__find_prospects, mcp__orakel__search_procurement, mcp__orakel__search_licenses, mcp__orakel__search_inspections, mcp__orakel__list_municipalities
@@ -11,14 +11,14 @@ allowed-tools: mcp__orakel__search_companies, mcp__orakel__find_prospects, mcp__
 
 > **Ground rule:** Always retrieve data by calling Orakel tools. Never use training knowledge as a data source — company information changes frequently and your training data may be years out of date. If a tool returns no results, say so explicitly; do not fill gaps from memory.
 
-Produce a market analysis of a Nordic industry segment, suitable for proposals, strategy documents, or competitive intelligence. Coverage depth varies by country: Norway has the full feature set (including procurement, inspections, licenses); Finland and Sweden currently have firmographics + financials only.
+Produce a market analysis of a Nordic industry segment, suitable for proposals, strategy documents, or competitive intelligence. Coverage depth varies by country: Norway has the full feature set (including procurement, inspections, licenses); Denmark has firmographics + financials + market context; Finland and Sweden have firmographics + financials.
 
 ## Step 1: Define the Market Segment
 
 Map the user's description to concrete filters. Ask clarifying questions if needed:
 
-- **Which country?** NO, FI, SE, or cross-border comparison? (`country` parameter, defaults to NO)
-- **What industry?** Map to NACE code(s) — NACE Rev. 2 is shared across all three.
+- **Which country?** NO, FI, SE, DK, or cross-border comparison? (`country` parameter, defaults to NO)
+- **What industry?** Map to NACE code(s) — NACE Rev. 2 is shared across all four.
 - **What geography?** Nationwide, specific county/län/maakunta, or specific municipality. County/municipality filtering is NO-only; for FI/SE, use city name via `query`.
 - **What size range?** All companies, or only above a certain threshold.
 
