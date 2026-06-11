@@ -1,7 +1,7 @@
 ---
 name: company-deep-dive
 description: >
-  Research a single Nordic company (Norway, Finland, Sweden) in depth. Use when
+  Research a single Nordic company (Norway, Finland, Sweden, Denmark) in depth. Use when
   asked to look up, analyze, or investigate a specific company.
 allowed-tools: mcp__orakel__lookup_company, mcp__orakel__get_financials, mcp__orakel__get_corporate_group, mcp__orakel__get_shareholders, mcp__orakel__get_ownership_network, mcp__orakel__search_companies, mcp__orakel__search_inspections, mcp__orakel__search_licenses
 ---
@@ -15,12 +15,13 @@ Produce a comprehensive research report on a single Nordic company. Depth varies
 - **Norway (NO):** full parity — firmographics, financials, roles, shareholders, group, inspections, licenses
 - **Finland (FI):** firmographics + limited financials; no roles
 - **Sweden (SE):** firmographics + Bolagsverket iXBRL financials (FY 2020+, SMEs); no roles, no shareholders
+- **Denmark (DK):** firmographics + roles + XBRL financials via CVR; beneficial ownership skipped
 
 ## Step 1: Identify the Company
 
 The user may provide:
 
-- **Organization number** — 9 digits for NO, 7-8 digits for FI, 10 digits for SE. Use `lookup_company` directly with the matching `country` parameter.
+- **Organization number** — 9 digits for NO, 7-8 digits for FI, 10 digits for SE, 8 digits for DK. Use `lookup_company` directly with the matching `country` parameter.
 - **Company name**: Use `search_companies` with the `query` parameter and the appropriate `country` filter. If the user doesn't mention country and the name is ambiguous across markets, ask.
 
 If a name search returns multiple results, present the top matches and ask the user to confirm:
