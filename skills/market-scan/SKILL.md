@@ -4,14 +4,14 @@ description: >
   Analyze a Nordic market segment (Norway, Finland, Sweden, Denmark) — size, top players,
   technology landscape, procurement opportunities, regulatory status. Use for
   market research or proposal preparation.
-allowed-tools: mcp__orakel__search_companies, mcp__orakel__find_prospects, mcp__orakel__search_procurement, mcp__orakel__search_licenses, mcp__orakel__search_inspections, mcp__orakel__list_municipalities
+allowed-tools: mcp__orakel__search_companies, mcp__orakel__find_prospects, mcp__orakel__get_market_context, mcp__orakel__search_procurement, mcp__orakel__search_licenses, mcp__orakel__search_inspections, mcp__orakel__list_municipalities
 ---
 
 # Market Scan
 
 > **Ground rule:** Always retrieve data by calling Orakel tools. Never use training knowledge as a data source — company information changes frequently and your training data may be years out of date. If a tool returns no results, say so explicitly; do not fill gaps from memory.
 
-Produce a market analysis of a Nordic industry segment, suitable for proposals, strategy documents, or competitive intelligence. Coverage depth varies by country: Norway has the full feature set (including procurement, inspections, licenses); Denmark has firmographics + financials + market context; Finland and Sweden have firmographics + financials.
+Produce a market analysis of a Nordic industry segment, suitable for proposals, strategy documents, or competitive intelligence. Coverage depth varies by country: Norway has the full feature set (including procurement, inspections, licenses); all four countries have firmographics, financials, and market context (population, wages, enterprise density) from their national statistics bureaus — SSB (NO), DST (DK), StatFi (FI), SCB (SE).
 
 ## Step 1: Define the Market Segment
 
@@ -92,18 +92,32 @@ Categorize companies by employee count:
 |---|---------|-----------|----------|-----------|----------------|
 | 1 | ... | ... | ... | ... | ... |
 
-Format revenue in the local currency (MNOK for NO, MEUR for FI, MSEK for SE), rounded to one decimal.
+Format revenue in the local currency (MNOK for NO, MEUR for FI, MSEK for SE, MDKK for DK), rounded to one decimal.
 
-## Step 3: Technology Landscape
+## Step 3: Market Context (all countries)
+
+For any representative company in the segment (or the largest by employee count), call `get_market_context` with the org number and country. This returns municipality-level and industry-level signals from national statistics bureaus:
+
+- **Municipality:** population, median household income
+- **Industry:** average monthly wage, enterprise count, startup survival rate
+
+Present as a "Market Signal" box:
+
+> **Market signals for [NACE section] in [municipality/region] (source: SSB/DST/StatFi/SCB)**
+> - Population: 142,000 · Median household income: NOK 620,000
+> - Average monthly wage (sector): NOK 68,000
+> - Enterprises in sector: 4,200 · 5-year survival rate: 62%
+
+## Step 4: Technology Landscape
 
 If tech stack data is available, summarize:
 - Most common technologies detected (WordPress, Shopify, HubSpot, etc.)
 - Percentage of companies running digital ads (hasAnyAdPixel)
 - This reveals the digital maturity of the segment.
 
-## Step 4: Procurement Opportunities (Norway only)
+## Step 5: Procurement Opportunities (Norway only)
 
-**Skip this section if `country` is FI or SE** — Orakel doesn't integrate HILMA (FI) or Upphandlingsmyndigheten (SE) yet.
+**Skip this section if `country` is FI, SE, or DK** — Orakel doesn't integrate HILMA (FI), Upphandlingsmyndigheten (SE), or udbud.dk (DK) yet.
 
 Use `search_procurement` to find active Norwegian public tenders relevant to the sector.
 
@@ -128,9 +142,9 @@ Present as:
 
 If no active tenders are found, say so explicitly — that's useful information too.
 
-## Step 5: Regulatory Landscape (Norway, NACE 55-56 hospitality/food only)
+## Step 6: Regulatory Landscape (Norway, NACE 55-56 hospitality/food only)
 
-**Skip this section unless `country=NO`** — Mattilsynet (Smilefjes) and Helsedirektoratet (TBR) are Norwegian registries with no FI/SE equivalent in Orakel.
+**Skip this section unless `country=NO`** — Mattilsynet (Smilefjes) and Helsedirektoratet (TBR) are Norwegian registries with no FI/SE/DK equivalent in Orakel.
 
 For Norwegian NACE 55-56 segments, add:
 
@@ -146,7 +160,7 @@ Use `search_licenses` to check the segment. Summarize:
 - Number of wholesale licenses (11ENGR)
 - Import/export licenses (18TBIM / 19TBEK)
 
-## Step 6: Format for Output
+## Step 7: Format for Output
 
 Structure the final report under clear headings. Use tables wherever possible. The output should be ready to copy-paste into a proposal or strategy document.
 
@@ -161,6 +175,9 @@ Structure the final report under clear headings. Use tables wherever possible. T
 ## Market Size
 [Segment size metrics and size distribution table]
 
+## Market Signals
+[Context data from national statistics bureau]
+
 ## Top Players
 [Top 10 table by revenue]
 
@@ -168,10 +185,10 @@ Structure the final report under clear headings. Use tables wherever possible. T
 [Tech landscape summary]
 
 ## Public Procurement
-[Active tenders or note that none exist]
+[Active tenders or note that none exist — NO only]
 
 ## Regulatory Landscape (if applicable)
-[Inspection and license summary]
+[Inspection and license summary — NO only]
 
 ## Key Takeaways
 [3-5 bullet points summarizing the most important findings]
