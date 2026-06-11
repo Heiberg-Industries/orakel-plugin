@@ -41,6 +41,16 @@ Claude Code opens a browser to sign in with your Orakel account. No API key to c
 | **Norway** | ~1.16M (full Brreg) | Regnskapsregisteret XBRL — full | Full Brreg board and leadership |
 | **Finland** | ~458K (YTJ/PRH) | Best-effort XBRL (~30K filers) | — |
 | **Sweden** | ~2.8M (Bolagsverket + SCB) | iXBRL for SMEs, 2020+ | — |
+| **Denmark** | ~2.24M (full CVR) | 7 of 9 financial fields | — |
+
+**Contextual data (Norway):**
+
+| Source | What it covers |
+|---|---|
+| SSB | Municipality population, industry wages, enterprise density |
+| Doffin | Public procurement notices |
+| Mattilsynet | Food safety inspections (Smilefjes ratings) |
+| Helsedirektoratet | Alcohol and tobacco licenses |
 
 ---
 
@@ -71,8 +81,10 @@ All data is sourced from public registries under open licences:
 - **Brønnøysundregistrene** — Norwegian company register, roles, financials (NLOD 2.0)
 - **PRH / YTJ** — Finnish company register (CC BY 4.0)
 - **Bolagsverket / SCB** — Swedish company register and statistics (PSI)
+- **CVR** — Danish company register (CC0)
 - **Doffin** — Norwegian public procurement notices (NLOD 2.0)
 - **Mattilsynet / Helsedirektoratet** — Food safety and license data (NLOD 2.0)
+- **SSB** — Norwegian statistics (NLOD 2.0)
 
 EU-sovereign infrastructure. All processing and storage on Hetzner Helsinki.
 
